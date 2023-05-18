@@ -8,7 +8,7 @@ Desde que los botones aparecen en pantalla, comienza a correr un timer que medir
 
 Luego los jugadores podrán compara tiempos y determinar quien fue el campeón de la competencia!!
 
-Pueden visitar la App haciendo click en este link:
+Pueden visitar la App haciendo click en este link: https://dynamic-creponne-254afc.netlify.app/
 
 ## Notas:
 
