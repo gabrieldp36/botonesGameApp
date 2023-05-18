@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import catGif from './assets/img/cat.gif';
 
-let timer = null;
 let btn1 = true;
 let btn2 = true;
 let btn3 = true;
@@ -61,7 +61,6 @@ function Juego() {
   const [btn3Letra, setBtn3Letra] = useState('');
 
   // Funciones.
-
   const comenzar = () => {
     setResultado('');
     setMsgPerdedor('');
@@ -86,7 +85,7 @@ function Juego() {
       btn1 = true;
       btn2 = true;
       btn3 = true;
-      setTiempo(performance.now());
+      setTiempo(Date.now());
     }, Math.floor(Math.random() * 5000) + 1000);
   };
 
@@ -102,9 +101,6 @@ function Juego() {
 
   // Listener botón número 1
   const cliqueado = () => {
-    if(!timer) {
-      timer = performance.now() - tiempo;
-    };
     setActivoBtn1(false);
     btn1 = false;
     nroClick++;
@@ -122,9 +118,6 @@ function Juego() {
 
   // Listener botón número 2
   const cliqueado2 = () => {
-    if(!timer) {
-      timer = performance.now() - tiempo;
-    };
     setActivoBtn2(false);
     btn2 = false;
     nroClick++;
@@ -141,9 +134,6 @@ function Juego() {
 
   // Listener botón número 3
   const cliqueado3 = () => {
-    if(!timer) {
-      timer = performance.now() - tiempo;
-    };
     setActivoBtn3(false);
     btn3 = false;
     nroClick++;
@@ -159,10 +149,9 @@ function Juego() {
   };
 
   const ganador = () => {
-    setResultado(`Tardaste ${(timer/1000).toFixed(1)} segundos en finalizar.`);
+    setResultado(`Tardaste ${((Date.now() - tiempo)/1000).toFixed(1)} segundos en finalizar.`);
     primeraPartida = false;
     setJugando(false); 
-    timer = null
     nroClick = -1;
   };
 
@@ -170,7 +159,6 @@ function Juego() {
     setMsgPerdedor(`¡No te desanimes, volvé a intentarlo!`);
     primeraPartida = false;
     setJugando(false); 
-    timer = null
     nroClick = -1;
   };
 
@@ -275,15 +263,16 @@ function Juego() {
         <div 
           style=
           {{
-            width:'100vw', 
-            height:'100vh', 
             display:'grid',
-            placeItems: 'center'
+            placeItems: 'center',
+            width:'100vw', 
+            height:'100vh'
           }}
         
         >
           <div
             style={{
+              position: 'relative',
               display:'flex',
               flexDirection:'column',
               justifyContent:'center', 
@@ -293,7 +282,10 @@ function Juego() {
               padding:'50px', 
               width: 'fit-content'
             }}
-          >   
+          > 
+            <div style={{position: 'absolute', left:'-45px', top: '-138px'}}>
+              <img src={catGif} width={'250px'} height={'250px'} alt="" />
+            </div>
             <h1> &#127881; ¡Ganaste! &#128512; </h1>
             <h4 className='text-center'>{resultado}</h4>
             <div className='row' style={{justifyContent:'center', alignItems:'center', gap:'15px'}}>
